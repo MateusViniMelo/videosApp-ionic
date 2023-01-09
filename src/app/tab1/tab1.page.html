@@ -1,0 +1,50 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-title>{{titulo}}</ion-title>
+  </ion-toolbar>
+  <ion-toolbar color="dark">
+    <ion-searchbar placeholder="Pesquisar..."></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="light">
+  <ion-list [inset]="true" class="">
+    <ion-item-sliding *ngFor="let filme of filmes">
+      <ion-item class="pt-0">
+        <ion-thumbnail slot="start">
+          <img
+            alt="Silhouette of mountains"
+            [src]="filme.imagem_url"
+          />
+        </ion-thumbnail>
+
+        <ion-label>
+          <div class="d-flex justify-content-start">
+
+              <div class="fw-bold text-dark text-wrap">
+                {{filme.nome}}
+              </div>
+
+            <div>
+              <ion-chip color="success" outline>{{filme.avaliacao}}</ion-chip>
+            </div>
+          </div>
+
+          <p class="text-dark detalhes-filme mb-2 ">{{filme.lancamento}} - {{filme.duracao}}</p>
+          <div class="text-dark detalhes-filme text-wrap">
+            <ion-badge color="primary" class="me-1 genero" *ngFor="let genero of filme.generos">{{genero}}</ion-badge>
+          </div>
+        </ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="purple" (click)="exibirAlertaFavorito()">
+          <ion-icon
+            slot="icon-only"
+            name="star-outline"
+            color="warning"
+          ></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
